@@ -110,8 +110,8 @@
 		</dependency>
 	</dependencies>
   	<build>
-    	<finalName>learningout</finalName>
-    	<plugins>
+    		<finalName>learningout</finalName>
+    		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -120,6 +120,20 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
+			</plugin>
+		      <plugin>
+			    <groupId>org.eclipse.jetty</groupId>
+			    <artifactId>jetty-maven-plugin</artifactId>
+			    <version>9.2.11.v20150529</version>
+			    <configuration>
+			      <httpConnector>
+				<port>9999</port>
+			      </httpConnector>
+				<scanIntervalSeconds>10</scanIntervalSeconds>
+				<webApp>
+				    <contextPath>/</contextPath>
+				</webApp>
+			    </configuration>
 			</plugin>
 		</plugins>
   	</build>
