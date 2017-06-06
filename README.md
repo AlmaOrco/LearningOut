@@ -4,7 +4,7 @@ This is the REST API server side of **LearningOut**, an app for a educational re
 It will show interesting places to learn practising different sports activities.
 
 ## Development
-This project will be growing with **LearningOut-front[add url]**, an Angular project that consumes services this REST API.
+This project will be growing with **LearningOut-front[https://github.com/AlmaOrco/LearningOut-Angular]**, an Angular project that consumes services this REST API.
 
 ## Running locally
 ```
@@ -23,5 +23,10 @@ This application runs with mysql.
 
 **Remember to revise the *jdbc.properties* file to configure your own data properties.**
 
+## Features
+This app sends JSON objects to communicate data from database.
+For now, it allows to ask all places, places by id, and places by term.
+
 ## Improvements
-Currently, this app uses a jsp page to show data from database, but it will send JSON data to the client soon.
+I'm working about adding and delete places.
+

@@ -7,4 +7,8 @@ import com.learningout.domain.Place;
 
 public interface PlaceManager extends Serializable{
 	public List<Place> getPlaces();
+
+	public List<Place> searchPlaces(String term);
+
+	public Place findPlaceById(long placeId);
 }

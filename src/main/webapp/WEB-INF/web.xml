@@ -31,5 +31,7 @@
     	<servlet-name>learningOut</servlet-name>
     	<url-pattern>*.html</url-pattern>
     	<url-pattern>*.htm</url-pattern>
+    	<url-pattern>*.json</url-pattern>
+	
   	</servlet-mapping>
 </web-app>

@@ -15,23 +15,23 @@ public class SimplePlaceManager implements PlaceManager {
 	
 	@Autowired
 	private PlaceDao placeDao;
-	
-//	private List<Place> places;
-	
+		
 	public List<Place> getPlaces() {
 		return placeDao.getPlaceList();
 	}
 
-//	public void setPlaces(List<Place> places) {
-//		this.places = places;
-//	}
-//
-//	public PlaceDao getPlaceDao() {
-//		return placeDao;
-//	}
-
 	public void setPlaceDao(PlaceDao placeDao) {
 		this.placeDao = placeDao;
+	}
+
+	@Override
+	public List<Place> searchPlaces(String term) {
+		return placeDao.searchPlaces(term);
+	}
+
+	@Override
+	public Place findPlaceById(long id) {
+		return placeDao.findPlaceById(id);
 	}
 
 }

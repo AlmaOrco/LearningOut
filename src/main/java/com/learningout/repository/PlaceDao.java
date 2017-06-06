@@ -10,4 +10,8 @@ public interface PlaceDao {
 
     public void savePlace(Place place);
 
+	public List<Place> searchPlaces(String term);
+
+	public Place findPlaceById(long id);
+
 }
