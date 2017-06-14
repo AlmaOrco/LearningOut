@@ -11,4 +11,8 @@ public interface PlaceManager extends Serializable{
 	public List<Place> searchPlaces(String term);
 
 	public Place findPlaceById(long placeId);
+
+	public void savePlace(Place currentPlace);
+
+	public void deletePlace(Place place);
 }

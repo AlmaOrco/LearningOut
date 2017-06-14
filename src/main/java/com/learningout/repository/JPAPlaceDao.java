@@ -31,11 +31,12 @@ public class JPAPlaceDao implements PlaceDao {
 	}
     
     @Transactional(readOnly = false)
+    @Override
 	public void savePlace(Place place) {
     	em.merge(place);
 	}
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Place> searchPlaces(String term) {
@@ -44,10 +45,21 @@ public class JPAPlaceDao implements PlaceDao {
 		return placesList;
 	}
 
-	@Override
+    @Transactional(readOnly = true)
+    @Override
 	public Place findPlaceById(long id) {
     	System.out.println("Obteniendo lugar por id. Id: " + id);
 		return em.createQuery("select p from Place p where p.idPlace = " + id, Place.class).getSingleResult();
 	}
 
+	@Override
+	public void deletePlace(Place place) {
+		long placeId = place.getIdPlace();
+		this.em.createQuery("DELETE FROM Place p WHERE idPlace=" + placeId).executeUpdate();
+		if (em.contains(place)) {
+			em.remove(place);
+		}
+	}
+
+    
 }
