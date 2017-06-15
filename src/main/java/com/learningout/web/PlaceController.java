@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.learningout.domain.Place;
 import com.learningout.service.BindingErrorsResponse;
@@ -69,8 +70,22 @@ public class PlaceController {
     	return new ResponseEntity<Collection<Place>>(placesList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "api/places/add/{placeId}.json", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Place> addPlace(@PathVariable("placeId") long placeId, @RequestBody @Valid Place place, BindingResult bindingResult){
+    @RequestMapping(value = "api/places/add/place.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Place> addPlace(@RequestBody @Valid Place place, BindingResult bindingResult, UriComponentsBuilder ucBuilder){
+		BindingErrorsResponse errors = new BindingErrorsResponse();
+		HttpHeaders headers = new HttpHeaders();
+		if(bindingResult.hasErrors() || (place == null)){
+			errors.addAllErrors(bindingResult);
+			headers.add("errors", errors.toJSON());
+			return new ResponseEntity<Place>(headers, HttpStatus.BAD_REQUEST);
+		}
+		this.placeDao.savePlace(place);
+		headers.setLocation(ucBuilder.path("/api/place/{id}").buildAndExpand(place.getIdPlace()).toUri());
+		return new ResponseEntity<Place>(place, headers, HttpStatus.CREATED);
+    }
+    
+    @RequestMapping(value = "api/places/update/{placeId}.json", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<Place> updatePlace(@PathVariable("placeId") long placeId, @RequestBody @Valid Place place, BindingResult bindingResult){
     	    	
 		BindingErrorsResponse errors = new BindingErrorsResponse();
 		HttpHeaders headers = new HttpHeaders();

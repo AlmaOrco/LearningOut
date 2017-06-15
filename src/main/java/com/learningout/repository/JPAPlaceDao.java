@@ -33,7 +33,11 @@ public class JPAPlaceDao implements PlaceDao {
     @Transactional(readOnly = false)
     @Override
 	public void savePlace(Place place) {
-    	em.merge(place);
+        if (place.getIdPlace() == 0) {
+            this.em.persist(place);
+        } else {
+            this.em.merge(place);
+        }
 	}
 
     @Transactional(readOnly = true)
