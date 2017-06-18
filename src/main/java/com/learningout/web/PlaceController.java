@@ -85,7 +85,7 @@ public class PlaceController {
     }
     
     @RequestMapping(value = "api/places/update/{placeId}.json", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Place> updatePlace(@PathVariable("placeId") long placeId, @RequestBody @Valid Place place, BindingResult bindingResult){
+    public ResponseEntity<Place> updatePlace(@PathVariable("placeId") long placeId, @RequestBody @Valid Place place, BindingResult bindingResult, UriComponentsBuilder ucBuilder){
     	    	
 		BindingErrorsResponse errors = new BindingErrorsResponse();
 		HttpHeaders headers = new HttpHeaders();
