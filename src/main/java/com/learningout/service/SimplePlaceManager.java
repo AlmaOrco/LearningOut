@@ -3,7 +3,9 @@ package com.learningout.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.learningout.domain.Place;
 import com.learningout.repository.PlaceDao;
@@ -34,4 +36,14 @@ public class SimplePlaceManager implements PlaceManager {
 		return placeDao.findPlaceById(id);
 	}
 
+	@Override
+	public void savePlace(Place currentPlace) {
+		this.placeDao.savePlace(currentPlace);
+	}
+
+	@Override
+	@Transactional
+	public void deletePlace(Place place) throws DataAccessException {
+		this.placeDao.deletePlace(place);
+	}
 }

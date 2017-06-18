@@ -14,4 +14,6 @@ public interface PlaceDao {
 
 	public Place findPlaceById(long id);
 
+	public void deletePlace(Place place);
+
 }
