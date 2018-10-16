@@ -15,7 +15,7 @@
 		<jstl.version>1.2</jstl.version>
 		<aspectj.version>1.7.3</aspectj.version>
 		<junit.version>4.11</junit.version>
-		<jackson.library>2.7.5</jackson.library>
+		<jackson.library>2.9.5</jackson.library>
 	</properties>
 	
 	<dependencies>
