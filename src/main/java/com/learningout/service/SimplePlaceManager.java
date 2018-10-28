@@ -26,22 +26,18 @@ public class SimplePlaceManager implements PlaceManager {
 		this.placeDao = placeDao;
 	}
 
-	@Override
 	public List<Place> searchPlaces(String term) {
 		return placeDao.searchPlaces(term);
 	}
 
-	@Override
 	public Place findPlaceById(long id) {
 		return placeDao.findPlaceById(id);
 	}
 
-	@Override
 	public void savePlace(Place currentPlace) {
 		this.placeDao.savePlace(currentPlace);
 	}
 
-	@Override
 	@Transactional
 	public void deletePlace(Place place) throws DataAccessException {
 		this.placeDao.deletePlace(place);

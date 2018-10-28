@@ -31,8 +31,7 @@ public class JPAPlaceDao implements PlaceDao {
 	}
     
     @Transactional(readOnly = false)
-    @Override
-	public void savePlace(Place place) {
+    public void savePlace(Place place) {
         if (place.getIdPlace() == 0) {
             this.em.persist(place);
         } else {
@@ -42,7 +41,6 @@ public class JPAPlaceDao implements PlaceDao {
 
     @Transactional(readOnly = true)
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Place> searchPlaces(String term) {
     	System.out.println("Obteniendo lugares filtrados.");
 		List<Place> placesList = em.createQuery("select p from Place p where p.namePlace like '%" + term + "%'").getResultList();
@@ -50,13 +48,11 @@ public class JPAPlaceDao implements PlaceDao {
 	}
 
     @Transactional(readOnly = true)
-    @Override
-	public Place findPlaceById(long id) {
+    public Place findPlaceById(long id) {
     	System.out.println("Obteniendo lugar por id. Id: " + id);
 		return em.createQuery("select p from Place p where p.idPlace = " + id, Place.class).getSingleResult();
 	}
 
-	@Override
 	public void deletePlace(Place place) {
 		long placeId = place.getIdPlace();
 		this.em.createQuery("DELETE FROM Place p WHERE idPlace=" + placeId).executeUpdate();
